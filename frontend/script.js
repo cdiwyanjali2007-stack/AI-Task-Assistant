@@ -1,10 +1,8 @@
-let abortController = null;
 async function generateSteps() {
     const taskInput = document.getElementById('taskInput').value.trim();
     const resultsContainer = document.getElementById('resultsContainer');
     const loading = document.getElementById('loading');
     const errorMessage = document.getElementById('errorMessage');
-    const cancelBtn = document.getElementById('cancelBtn');
     const generateBtn = document.getElementById('generateBtn');
 
     // Reset previous states
@@ -21,15 +19,6 @@ async function generateSteps() {
     loading.classList.remove('hidden');
     generateBtn.disabled = true;
     generateBtn.classList.add('opacity-50', 'cursor-not-allowed');
-
-    if (abortController) {
-        abortController.abort();
-    }
-
-    abortController = new AbortController();
-    
-    generateBtn.style.display = 'none';
-    if (cancelBtn) cancelBtn.style.display = 'inline-block';
 
     try {
         const response = await fetch('https://ai-task-assistant-production-4bfb.up.railway.app/generate-steps', {
@@ -99,11 +88,3 @@ document.getElementById('taskInput').addEventListener('keypress', function (e) {
     }
 });
 
-const cancelBtnElement = document.getElementById('cancelBtn');
-if (cancelBtnElement) {
-    cancelBtnElement.addEventListener('click', () => {
-        if (abortController) {
-            abortController.abort();
-        }
-    });
-}
