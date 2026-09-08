@@ -82,9 +82,13 @@ async function generateSteps() {
 }
 
 // Allow pressing 'Enter' key to trigger generation directly from input field
-document.getElementById('taskInput').addEventListener('keydown', function (e) {
-    if (e.key === 'Enter') {
-        generateSteps();
+document.addEventListener('DOMContentLoaded', function() {
+    const taskInput = document.getElementById('taskInput');
+    if (taskInput) {
+        taskInput.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') {
+                generateSteps();
+            }
+        });
     }
 });
-
