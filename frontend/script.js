@@ -21,7 +21,7 @@ async function generateSteps() {
     generateBtn.classList.add('opacity-50', 'cursor-not-allowed');
 
     try {
-        const response = await fetch('ai-task-assistant-production-4bfb.up.railway.app', {
+        const response = await fetch('ai-task-assistant-production-4bfb.up.railway.app/generate-steps', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
