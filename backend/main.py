@@ -10,14 +10,18 @@ load_dotenv()
 
 app = FastAPI()
 
-# Enable CORS for Frontend
+from fastapi.middleware.cors import CORSMiddleware
+
+
+# CORS Middleware configuration
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
-    allow_credentials=True,
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 # Get API key from environment
 api_key = os.getenv("OPENROUTER_API_KEY")
